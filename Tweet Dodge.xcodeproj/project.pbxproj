@@ -23,6 +23,9 @@
 		8D75C42A18B4FE9F000A9950 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75C40518B4FE9F000A9950 /* UIKit.framework */; };
 		8D75C43218B4FE9F000A9950 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D75C43018B4FE9F000A9950 /* InfoPlist.strings */; };
 		8D75C43418B4FE9F000A9950 /* Tweet_DodgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D75C43318B4FE9F000A9950 /* Tweet_DodgeTests.m */; };
+		8D75C43E18B50337000A9950 /* twitterBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D75C43D18B50337000A9950 /* twitterBG.png */; };
+		8D75C44018B50358000A9950 /* twitterBird.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D75C43F18B50358000A9950 /* twitterBird.png */; };
+		8D75C44418B50A8A000A9950 /* testPost1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D75C44318B50A8A000A9950 /* testPost1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		8D75C42F18B4FE9F000A9950 /* Tweet DodgeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tweet DodgeTests-Info.plist"; sourceTree = "<group>"; };
 		8D75C43118B4FE9F000A9950 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8D75C43318B4FE9F000A9950 /* Tweet_DodgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweet_DodgeTests.m; sourceTree = "<group>"; };
+		8D75C43D18B50337000A9950 /* twitterBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterBG.png; sourceTree = "<group>"; };
+		8D75C43F18B50358000A9950 /* twitterBird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterBird.png; sourceTree = "<group>"; };
+		8D75C44318B50A8A000A9950 /* testPost1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testPost1.png; path = ../testPost1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,9 @@
 				8D75C41918B4FE9F000A9950 /* bmwViewController.m */,
 				8D75C41B18B4FE9F000A9950 /* bmwMyScene.h */,
 				8D75C41C18B4FE9F000A9950 /* bmwMyScene.m */,
+				8D75C43F18B50358000A9950 /* twitterBird.png */,
+				8D75C43D18B50337000A9950 /* twitterBG.png */,
+				8D75C44318B50A8A000A9950 /* testPost1.png */,
 				8D75C42018B4FE9F000A9950 /* Images.xcassets */,
 				8D75C40A18B4FE9F000A9950 /* Supporting Files */,
 			);
@@ -238,6 +247,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D75C44018B50358000A9950 /* twitterBird.png in Resources */,
+				8D75C44418B50A8A000A9950 /* testPost1.png in Resources */,
+				8D75C43E18B50337000A9950 /* twitterBG.png in Resources */,
 				8D75C40E18B4FE9F000A9950 /* InfoPlist.strings in Resources */,
 				8D75C42118B4FE9F000A9950 /* Images.xcassets in Resources */,
 				8D75C41718B4FE9F000A9950 /* Main.storyboard in Resources */,

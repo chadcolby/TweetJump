@@ -8,6 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface bmwMyScene : SKScene
+@interface bmwMyScene : SKScene <SKPhysicsContactDelegate>
+
+@property (strong, nonatomic) SKSpriteNode *mainTweeter;
+@property (strong, nonatomic) NSMutableArray *notificationsArray;
 
 @end

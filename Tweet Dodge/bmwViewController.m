@@ -15,6 +15,10 @@
 {
     [super viewDidLoad];
 
+}
+
+- (void)viewWillLayoutSubviews
+{
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
@@ -30,7 +34,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 - (NSUInteger)supportedInterfaceOrientations
