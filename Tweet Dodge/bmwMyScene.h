@@ -11,6 +11,8 @@
 @interface bmwMyScene : SKScene <SKPhysicsContactDelegate>
 
 @property (strong, nonatomic) SKSpriteNode *mainTweeter;
+@property (strong, nonatomic) SKSpriteNode *animatedTweeter;
 @property (strong, nonatomic) NSMutableArray *notificationsArray;
+@property (strong, nonatomic) NSArray *animatinArray;
 
 @end

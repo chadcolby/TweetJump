@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D67B77F18B9310200109835 /* tBird.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D67B77E18B9310200109835 /* tBird.atlas */; };
 		8D75C40218B4FE9F000A9950 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75C40118B4FE9F000A9950 /* Foundation.framework */; };
 		8D75C40418B4FE9F000A9950 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75C40318B4FE9F000A9950 /* CoreGraphics.framework */; };
 		8D75C40618B4FE9F000A9950 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75C40518B4FE9F000A9950 /* UIKit.framework */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D67B77E18B9310200109835 /* tBird.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = tBird.atlas; sourceTree = "<group>"; };
 		8D75C3FE18B4FE9F000A9950 /* Tweet Dodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tweet Dodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D75C40118B4FE9F000A9950 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8D75C40318B4FE9F000A9950 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -135,6 +137,7 @@
 				8D75C43F18B50358000A9950 /* twitterBird.png */,
 				8D75C43D18B50337000A9950 /* twitterBG.png */,
 				8D75C44318B50A8A000A9950 /* testPost1.png */,
+				8D67B77E18B9310200109835 /* tBird.atlas */,
 				8D75C42018B4FE9F000A9950 /* Images.xcassets */,
 				8D75C40A18B4FE9F000A9950 /* Supporting Files */,
 			);
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D75C44018B50358000A9950 /* twitterBird.png in Resources */,
+				8D67B77F18B9310200109835 /* tBird.atlas in Resources */,
 				8D75C44418B50A8A000A9950 /* testPost1.png in Resources */,
 				8D75C43E18B50337000A9950 /* twitterBG.png in Resources */,
 				8D75C40E18B4FE9F000A9950 /* InfoPlist.strings in Resources */,
@@ -485,6 +489,7 @@
 				8D75C43918B4FE9F000A9950 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8D75C43A18B4FE9F000A9950 /* Build configuration list for PBXNativeTarget "Tweet DodgeTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +498,7 @@
 				8D75C43C18B4FE9F000A9950 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

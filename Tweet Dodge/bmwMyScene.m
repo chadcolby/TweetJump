@@ -33,10 +33,40 @@ static const uint32_t notificatoinCategory = 0x1 << 1;
         self.physicsWorld.contactDelegate = self;
         
         [self backgroundSetUp];
-        [self setUpMainCharacters];
+        
+        NSMutableArray *flappingFrames = [NSMutableArray array];
+        SKTextureAtlas *tBirdAnimatedAtlas = [SKTextureAtlas atlasNamed:@"tBird"];
+        
+        NSInteger numberOfImages = tBirdAnimatedAtlas.textureNames.count;
+            for (int i = 1; i <= numberOfImages; i++) {
+                NSString *textureName = [NSString stringWithFormat:@"tBird%d", i];
+                SKTexture *temp = [tBirdAnimatedAtlas textureNamed:textureName];
+                [flappingFrames addObject:temp];
+            }
+        
+        self.animatinArray = [NSArray arrayWithArray:flappingFrames];
+        
+        NSLog(@">>>>> %@", self.animatinArray);
+        
+        SKTexture *tempTexture = self.animatinArray[0];
+        self.animatedTweeter = [SKSpriteNode spriteNodeWithTexture:tempTexture];
+        self.animatedTweeter.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        [self addChild:self.animatedTweeter];
+       
+        [self flappingTweeter];
+        
+        
+       // [self setUpMainCharacters];
 
     }
     return self;
+}
+
+- (void)flappingTweeter
+{
+    [self.animatedTweeter runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.animatinArray timePerFrame:0.05f resize:NO restore:YES]]
+                            withKey:@"flappingInPlace"];
+    
 }
 
 #pragma mark - Set Up Methods
