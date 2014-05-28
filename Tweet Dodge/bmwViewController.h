@@ -11,4 +11,9 @@
 
 @interface bmwViewController : UIViewController
 
+@property (strong, nonatomic) SKView *skView;
+
+- (void)showSelectedTweet;
+
+
 @end

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8D67B77F18B9310200109835 /* tBird.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D67B77E18B9310200109835 /* tBird.atlas */; };
+		8D67B78918B99A0100109835 /* projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D67B78818B99A0100109835 /* projectile.png */; };
+		8D67B78C18BA94BF00109835 /* bmwNotificationScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D67B78B18BA94BF00109835 /* bmwNotificationScene.m */; };
+		8D67B78F18BAB54D00109835 /* bmwTweetNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D67B78E18BAB54D00109835 /* bmwTweetNode.m */; };
 		8D75C40218B4FE9F000A9950 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75C40118B4FE9F000A9950 /* Foundation.framework */; };
 		8D75C40418B4FE9F000A9950 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75C40318B4FE9F000A9950 /* CoreGraphics.framework */; };
 		8D75C40618B4FE9F000A9950 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75C40518B4FE9F000A9950 /* UIKit.framework */; };
@@ -27,6 +30,8 @@
 		8D75C43E18B50337000A9950 /* twitterBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D75C43D18B50337000A9950 /* twitterBG.png */; };
 		8D75C44018B50358000A9950 /* twitterBird.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D75C43F18B50358000A9950 /* twitterBird.png */; };
 		8D75C44418B50A8A000A9950 /* testPost1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D75C44318B50A8A000A9950 /* testPost1.png */; };
+		8DFC09DD18BABEC5000F7561 /* tweetToShow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DFC09DC18BABEC5000F7561 /* tweetToShow.png */; };
+		8DFC09DF18BAC288000F7561 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DFC09DE18BAC288000F7561 /* close.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +46,11 @@
 
 /* Begin PBXFileReference section */
 		8D67B77E18B9310200109835 /* tBird.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = tBird.atlas; sourceTree = "<group>"; };
+		8D67B78818B99A0100109835 /* projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectile.png; sourceTree = "<group>"; };
+		8D67B78A18BA94BF00109835 /* bmwNotificationScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bmwNotificationScene.h; path = ../bmwNotificationScene.h; sourceTree = "<group>"; };
+		8D67B78B18BA94BF00109835 /* bmwNotificationScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bmwNotificationScene.m; path = ../bmwNotificationScene.m; sourceTree = "<group>"; };
+		8D67B78D18BAB54D00109835 /* bmwTweetNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bmwTweetNode.h; path = ../bmwTweetNode.h; sourceTree = "<group>"; };
+		8D67B78E18BAB54D00109835 /* bmwTweetNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bmwTweetNode.m; path = ../bmwTweetNode.m; sourceTree = "<group>"; };
 		8D75C3FE18B4FE9F000A9950 /* Tweet Dodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tweet Dodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D75C40118B4FE9F000A9950 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8D75C40318B4FE9F000A9950 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,6 +76,8 @@
 		8D75C43D18B50337000A9950 /* twitterBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterBG.png; sourceTree = "<group>"; };
 		8D75C43F18B50358000A9950 /* twitterBird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterBird.png; sourceTree = "<group>"; };
 		8D75C44318B50A8A000A9950 /* testPost1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testPost1.png; path = ../testPost1.png; sourceTree = "<group>"; };
+		8DFC09DC18BABEC5000F7561 /* tweetToShow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweetToShow.png; sourceTree = "<group>"; };
+		8DFC09DE18BAC288000F7561 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,9 +105,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D67B78318B93B1600109835 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				8D67B78D18BAB54D00109835 /* bmwTweetNode.h */,
+				8D67B78E18BAB54D00109835 /* bmwTweetNode.m */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		8D67B78418B93B4600109835 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8D67B78A18BA94BF00109835 /* bmwNotificationScene.h */,
+				8D67B78B18BA94BF00109835 /* bmwNotificationScene.m */,
+				8D75C41B18B4FE9F000A9950 /* bmwMyScene.h */,
+				8D75C41C18B4FE9F000A9950 /* bmwMyScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		8D75C3F518B4FE9F000A9950 = {
 			isa = PBXGroup;
 			children = (
+				8D67B78818B99A0100109835 /* projectile.png */,
 				8D75C40918B4FE9F000A9950 /* Tweet Dodge */,
 				8D75C42D18B4FE9F000A9950 /* Tweet DodgeTests */,
 				8D75C40018B4FE9F000A9950 /* Frameworks */,
@@ -130,13 +163,15 @@
 				8D75C41218B4FE9F000A9950 /* bmwAppDelegate.h */,
 				8D75C41318B4FE9F000A9950 /* bmwAppDelegate.m */,
 				8D75C41518B4FE9F000A9950 /* Main.storyboard */,
+				8D67B78418B93B4600109835 /* Scenes */,
+				8D67B78318B93B1600109835 /* Nodes */,
 				8D75C41818B4FE9F000A9950 /* bmwViewController.h */,
 				8D75C41918B4FE9F000A9950 /* bmwViewController.m */,
-				8D75C41B18B4FE9F000A9950 /* bmwMyScene.h */,
-				8D75C41C18B4FE9F000A9950 /* bmwMyScene.m */,
 				8D75C43F18B50358000A9950 /* twitterBird.png */,
+				8DFC09DE18BAC288000F7561 /* close.png */,
 				8D75C43D18B50337000A9950 /* twitterBG.png */,
 				8D75C44318B50A8A000A9950 /* testPost1.png */,
+				8DFC09DC18BABEC5000F7561 /* tweetToShow.png */,
 				8D67B77E18B9310200109835 /* tBird.atlas */,
 				8D75C42018B4FE9F000A9950 /* Images.xcassets */,
 				8D75C40A18B4FE9F000A9950 /* Supporting Files */,
@@ -252,11 +287,14 @@
 			files = (
 				8D75C44018B50358000A9950 /* twitterBird.png in Resources */,
 				8D67B77F18B9310200109835 /* tBird.atlas in Resources */,
+				8D67B78918B99A0100109835 /* projectile.png in Resources */,
 				8D75C44418B50A8A000A9950 /* testPost1.png in Resources */,
 				8D75C43E18B50337000A9950 /* twitterBG.png in Resources */,
 				8D75C40E18B4FE9F000A9950 /* InfoPlist.strings in Resources */,
 				8D75C42118B4FE9F000A9950 /* Images.xcassets in Resources */,
 				8D75C41718B4FE9F000A9950 /* Main.storyboard in Resources */,
+				8DFC09DF18BAC288000F7561 /* close.png in Resources */,
+				8DFC09DD18BABEC5000F7561 /* tweetToShow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D67B78F18BAB54D00109835 /* bmwTweetNode.m in Sources */,
+				8D67B78C18BA94BF00109835 /* bmwNotificationScene.m in Sources */,
 				8D75C41018B4FE9F000A9950 /* main.m in Sources */,
 				8D75C41D18B4FE9F000A9950 /* bmwMyScene.m in Sources */,
 				8D75C41418B4FE9F000A9950 /* bmwAppDelegate.m in Sources */,

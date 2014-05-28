@@ -7,6 +7,8 @@
 //
 
 #import "bmwMyScene.h"
+#import "bmwViewController.h"
+#import "bmwTweetNode.h"
 
 #define kNumNotification 8
 
@@ -19,10 +21,33 @@
 }
 @end
 
+static inline CGPoint rwAdd(CGPoint a, CGPoint b) {
+    return CGPointMake(a.x + b.x, a.y + b.y);
+}
+
+static inline CGPoint rwSub(CGPoint a, CGPoint b) {
+    return CGPointMake(a.x - b.x, a.y - b.y);
+}
+
+static inline CGPoint rwMult(CGPoint a, float b) {
+    return CGPointMake(a.x * b, a.y * b);
+}
+
+static inline float rwLength(CGPoint a) {
+    return sqrtf(a.x * a.x + a.y * a.y);
+}
+
+// Makes a vector have a length of 1
+static inline CGPoint rwNormalize(CGPoint a) {
+    float length = rwLength(a);
+    return CGPointMake(a.x / length, a.y / length);
+}
+
 @implementation bmwMyScene
 
 static const uint32_t tweeterCategory = 0x1 << 0;
 static const uint32_t notificatoinCategory = 0x1 << 1;
+static const uint32_t projectileCategory = 0x1 << 2;
 
 
 - (id)initWithSize:(CGSize)size {    
@@ -30,42 +55,76 @@ static const uint32_t notificatoinCategory = 0x1 << 1;
 
         _nextNotification = 0;
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+        
+        self.physicsWorld.gravity = CGVectorMake(0, 0);
+        
         self.physicsWorld.contactDelegate = self;
         
         [self backgroundSetUp];
-        
-        NSMutableArray *flappingFrames = [NSMutableArray array];
-        SKTextureAtlas *tBirdAnimatedAtlas = [SKTextureAtlas atlasNamed:@"tBird"];
-        
-        NSInteger numberOfImages = tBirdAnimatedAtlas.textureNames.count;
-            for (int i = 1; i <= numberOfImages; i++) {
-                NSString *textureName = [NSString stringWithFormat:@"tBird%d", i];
-                SKTexture *temp = [tBirdAnimatedAtlas textureNamed:textureName];
-                [flappingFrames addObject:temp];
-            }
-        
-        self.animatinArray = [NSArray arrayWithArray:flappingFrames];
-        
-        NSLog(@">>>>> %@", self.animatinArray);
-        
-        SKTexture *tempTexture = self.animatinArray[0];
-        self.animatedTweeter = [SKSpriteNode spriteNodeWithTexture:tempTexture];
-        self.animatedTweeter.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        [self addChild:self.animatedTweeter];
-       
-        [self flappingTweeter];
-        
-        
-       // [self setUpMainCharacters];
+        [self setUpMainCharacterWithAnimation];
+
 
     }
     return self;
 }
 
+-(void)setUpMainCharacterWithAnimation
+{
+    NSMutableArray *flappingFrames = [NSMutableArray array];
+    SKTextureAtlas *tBirdAnimatedAtlas = [SKTextureAtlas atlasNamed:@"tBird"];
+    
+    NSInteger numberOfImages = tBirdAnimatedAtlas.textureNames.count;
+    for (int i = 1; i <= numberOfImages; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"tBird%d", i];
+        SKTexture *temp = [tBirdAnimatedAtlas textureNamed:textureName];
+        [flappingFrames addObject:temp];
+    }
+    
+    self.animatinArray = [NSArray arrayWithArray:flappingFrames];
+    
+    NSLog(@">>>>> %@", self.animatinArray);
+    
+    SKTexture *tempTexture = self.animatinArray[0];
+    self.animatedTweeter = [SKSpriteNode spriteNodeWithTexture:tempTexture];
+    self.animatedTweeter.position = CGPointMake(CGRectGetMidX(self.frame)/3, CGRectGetMidY(self.frame)/2);
+    [self addChild:self.animatedTweeter];
+    [self flappingTweeter];
+    
+    self.animatedTweeter.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.animatedTweeter.size];
+    self.animatedTweeter.physicsBody.dynamic = YES;
+    self.animatedTweeter.physicsBody.affectedByGravity = NO;
+    self.animatedTweeter.physicsBody.mass = 0.03;
+    self.animatedTweeter.physicsBody.allowsRotation = NO;
+    self.animatedTweeter.physicsBody.categoryBitMask = tweeterCategory;
+    self.animatedTweeter.physicsBody.collisionBitMask = 0;;
+    self.animatedTweeter.physicsBody.contactTestBitMask = 0;
+    
+    self.notificationsArray = [[NSMutableArray alloc] initWithCapacity:kNumNotification];
+    
+    for (int i = 0; i < kNumNotification; i ++) {
+        self.notificaion = [bmwTweetNode spriteNodeWithImageNamed:@"testPost1"];
+        //SKSpriteNode *notification = [SKSpriteNode spriteNodeWithImageNamed:@"testPost1"];
+        self.notificaion.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.notificaion.size];
+        self.notificaion.physicsBody.categoryBitMask = notificatoinCategory;
+        self.notificaion.physicsBody.contactTestBitMask = projectileCategory;
+        self.notificaion.physicsBody.dynamic = NO;
+        self.notificaion.hidden = YES;
+        self.notificaion.name = @"notificationNode";
+        [self.notificationsArray addObject:self.notificaion];
+        self.notificaion.position = CGPointMake(1000, 200);
+        [self addChild:self.notificaion];
+    }
+
+}
+
 - (void)flappingTweeter
 {
-    [self.animatedTweeter runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.animatinArray timePerFrame:0.05f resize:NO restore:YES]]
+    [self.animatedTweeter runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.animatinArray timePerFrame:0.1f resize:NO restore:YES]]
                             withKey:@"flappingInPlace"];
+}
+
+- (void)shootTweet
+{
     
 }
 
@@ -79,40 +138,10 @@ static const uint32_t notificatoinCategory = 0x1 << 1;
         backgroundImage.position = CGPointMake(i * backgroundImage.size.width, 0);
         backgroundImage.name = @"background";
         [self addChild:backgroundImage];
-        
     }
 }
 
-- (void)setUpMainCharacters
-{
-    self.mainTweeter = [SKSpriteNode spriteNodeWithImageNamed: @"twitterBird"];
-    self.mainTweeter.position = CGPointMake(50, 100);
-    [self addChild:self.mainTweeter];
-    
-    self.mainTweeter.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.mainTweeter.size];
-    self.mainTweeter.physicsBody.dynamic = YES;
-    self.mainTweeter.physicsBody.affectedByGravity = YES;
-    self.mainTweeter.physicsBody.mass = 0.03;
-    self.mainTweeter.physicsBody.allowsRotation = NO;
-    self.mainTweeter.physicsBody.categoryBitMask = tweeterCategory;
-    self.mainTweeter.physicsBody.collisionBitMask = notificatoinCategory;
-    self.mainTweeter.physicsBody.contactTestBitMask = notificatoinCategory;
-    
-    self.notificationsArray = [[NSMutableArray alloc] initWithCapacity:kNumNotification];
-    
-    for (int i = 0; i < kNumNotification; i ++) {
-        SKSpriteNode *notification = [SKSpriteNode spriteNodeWithImageNamed:@"testPost1"];
-        notification.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:notification.size];
-        notification.physicsBody.categoryBitMask = notificatoinCategory;
-        notification.physicsBody.contactTestBitMask = tweeterCategory;
-        notification.physicsBody.dynamic = NO;
-        notification.hidden = YES;
-        [self.notificationsArray addObject:notification];
-        notification.position = CGPointMake(1000, 200);
-        [self addChild:notification];
-    }
-    
-}
+
 
 - (float)randomValueBetween:(float)low andValue:(float)high
 {
@@ -123,11 +152,75 @@ static const uint32_t notificatoinCategory = 0x1 << 1;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.mainTweeter.physicsBody setVelocity:CGVectorMake(0, 0)];
-    [self.mainTweeter.physicsBody applyImpulse:CGVectorMake(0, 20)];
+//    UITouch *viewTouch = [touches anyObject];
+//    NSArray *currentNodes = [self nodesAtPoint:[viewTouch locationInNode:self]];
+//    CGPoint location = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
+//    NSLog(@"^^^^^^ %@", currentNodes);
+//    for (bmwTweetNode *tweetNode in currentNodes) {
+//        if ([tweetNode.name isEqualToString:@"notificationNode"]) {
+//            bmwTweetNode *nodeToShow = [bmwTweetNode spriteNodeWithImageNamed:@"tweetToShow"];
+//            [nodeToShow showLog];
+//            nodeToShow.position = location;
+//            nodeToShow.hidden = YES;
+//            //[self addChild:nodeToShow];
+//            SKAction *showAction = [SKAction waitForDuration:0.5f];
+//
+//            SKAction *pauseAction = [SKAction runBlock:^{
+//                nodeToShow.hidden = NO;
+//                self.view.paused = YES;
+//
+//            }];
+//            SKAction *sequenceOfActions = [SKAction sequence:@[showAction, pauseAction]];
+//            [self runAction:sequenceOfActions];
+//        }
+//    }
     
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    
+    SKSpriteNode *projectile = [[SKSpriteNode alloc] initWithImageNamed:@"projectile"];
+    projectile.position = self.animatedTweeter.position;
+    
+    CGPoint offset = rwSub(location, projectile.position);
+    
+    if (offset.x <= 0) return;
+    
+    [self addChild:projectile];
+    CGPoint dircetion = rwNormalize(offset);
+    
+    CGPoint shootAmount = rwMult(dircetion, 500);
+    
+    CGPoint realDestination = rwAdd(shootAmount, projectile.position);
+    
+    float velocity = 568.f/1.0f;
+    float realMoveDuration = self.size.width / velocity;
+    
+    SKAction *moveAction = [SKAction moveTo:realDestination duration:realMoveDuration];
+    SKAction *moveDoneAction = [SKAction removeFromParent];
+    [projectile runAction:[SKAction sequence:@[moveAction, moveDoneAction]]];
+    
+    projectile.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:projectile.size];
+    projectile.physicsBody.dynamic = YES;
+    projectile.physicsBody.categoryBitMask = projectileCategory;
+    projectile.physicsBody.contactTestBitMask = notificatoinCategory;
+    projectile.physicsBody.collisionBitMask = 0;
+    projectile.physicsBody.usesPreciseCollisionDetection = YES;
+    
+    
+    
+}
+
+- (void)projectile:(SKSpriteNode *)projectile didCollideWithNotification:(SKSpriteNode *)notification
+{
+    NSLog(@"HIT!");
+    [projectile removeFromParent];
+    [notification removeFromParent];
+    
+}
 
 - (void)update:(CFTimeInterval)currentTime
 {
@@ -183,7 +276,28 @@ static const uint32_t notificatoinCategory = 0x1 << 1;
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
-    NSLog(@"Contact!!!");
+   // NSLog(@"Contact!!!");
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    }
+    else
+    {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    NSLog(@"BODYA %u, BODY2 %u", contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask);
+    if ((firstBody.categoryBitMask & projectileCategory) != 0 &&
+        (secondBody.categoryBitMask & notificatoinCategory) != 0)
+    {
+        //[self projectile:(SKSpriteNode *) firstBody.node didCollideWithNotification:(SKSpriteNode *) secondBody.node];
+        
+    }
+    [self projectile:(SKSpriteNode *) firstBody.node didCollideWithNotification:(SKSpriteNode *) secondBody.node];
+    
     
 }
 @end

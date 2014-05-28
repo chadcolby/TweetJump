@@ -20,16 +20,16 @@
 - (void)viewWillLayoutSubviews
 {
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+    self.skView = (SKView *)self.view;
+//    skView.showsFPS = YES;
+//    skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [bmwMyScene sceneWithSize:skView.bounds.size];
+    SKScene * scene = [bmwMyScene sceneWithSize:self.skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
-    [skView presentScene:scene];
+    [self.skView presentScene:scene];
 }
 
 - (BOOL)shouldAutorotate
@@ -50,6 +50,12 @@
 {
     [super didReceiveMemoryWarning];
 
+}
+
+-(void)showSelectedTweet
+{
+
+    NSLog(@"I SEE THIS");
 }
 
 @end
