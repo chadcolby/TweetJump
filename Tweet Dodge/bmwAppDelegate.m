@@ -16,7 +16,7 @@
 /*==== theis ====*/
     
     NSLog(@"i wonder what i meant by that");
-
+    NSLog(@"buzz");
     return YES;
 }
 							
@@ -27,8 +27,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is
+    // If your application supports background execution, this method is called instead of
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
