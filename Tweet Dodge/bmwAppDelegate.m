@@ -16,11 +16,11 @@
 /*==== theis ====*/
     
     NSLog(@"this is a test");
-=======
+
     // Override point for customization after application launch.
     // this doesn't matter at all
     // time is a cruel bitch
->>>>>>> afc11aca7b893ee1197f5ca341501e9c018b47e9
+
     return YES;
 }
 							
